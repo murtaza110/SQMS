@@ -11,7 +11,7 @@ namespace SQMS.Web.Controllers
 {
     public class AccountController : Controller
     {
-
+        UserDBContext obj = new UserDBContext();
         //
         // GET: /Account/LogOn
 
@@ -93,6 +93,23 @@ namespace SQMS.Web.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        public ActionResult UserRegister()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UserRegister(User model)
+        {
+            if (ModelState.IsValid)
+            {                
+                obj.Users.Add(model);
+                obj.SaveChanges();
+            }
+
             return View(model);
         }
 
