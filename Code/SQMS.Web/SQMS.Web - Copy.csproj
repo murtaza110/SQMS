@@ -66,27 +66,74 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NisaabController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Controllers\RegionTypeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DBContext.cs" />
-    <Compile Include="Models\Book.cs" />
-    <Compile Include="Models\Nisaab.cs" />
-    <Compile Include="Models\Region.cs" />
-    <Compile Include="Models\RegionType.cs" />
-    <Compile Include="Models\RequestType.cs" />
-    <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\SabaqAttendance.cs" />
-    <Compile Include="Models\SabaqBook.cs" />
-    <Compile Include="Models\SabaqGroup.cs" />
-    <Compile Include="Models\SabaqLog.cs" />
-    <Compile Include="Models\SabaqRegistration.cs" />
-    <Compile Include="Models\SabaqRequest.cs" />
+    <Compile Include="Models\Book.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Nisaab.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Region.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\RegionType.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\RequestType.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\SabaqAttendance.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\SabaqBook.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\SabaqGroup.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\SabaqLog.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\SabaqRegistration.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\SabaqRequest.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\SabaqStatus.cs" />
-    <Compile Include="Models\SecurityQuestion.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\SecurityQuestion.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\SQMSModel.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>SQMSModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="SQMSMembershipProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -173,6 +220,21 @@
     <Content Include="Views\Account\UserRegister.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Users\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Users\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Users\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Users\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Users\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +268,10 @@
     <Content Include="Views\RegionType\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Models\SQMSModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SQMSModel.cs</LastGenOutput>
+    </None>
     <Content Include="Views\Region\Index.cshtml" />
     <Content Include="Views\Region\Details.cshtml" />
     <Content Include="Views\Region\Create.cshtml" />
@@ -216,24 +282,6 @@
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Nisaab\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Nisaab\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Nisaab\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Nisaab\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Nisaab\Delete.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\DisplayTemplate\DateTime.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

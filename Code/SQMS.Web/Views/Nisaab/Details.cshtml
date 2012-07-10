@@ -1,0 +1,30 @@
+﻿@model SQMS.Web.Models.Nisaab
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Nisaab</legend>
+
+    <div class="display-label">NisaabName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NisaabName)
+    </div>
+
+    <div class="display-label">PrereqNisaabId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrereqNisaabId)
+    </div>
+
+    <div class="display-label">NumPrereqBooks</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumPrereqBooks)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.NisaabId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

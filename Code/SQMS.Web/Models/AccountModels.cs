@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace SQMS.Web.Models
 {
-
+    /*
     public class ChangePasswordModel
     {
         [Required]
@@ -79,6 +79,9 @@ namespace SQMS.Web.Models
         [Display(Name = "Password")]
         public string Password{get; set;}
 
+        [Display(Name = "Title")]
+        public string Title { get; set; }
+
         [Required]
         [Display(Name = "Name")]
         public string FirstName{get; set;}
@@ -88,24 +91,76 @@ namespace SQMS.Web.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [DataType(DataType.Date)]
+        [Display(Name = "Date of Birth")]
+        public DateTime DateOfBirth { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email address")]
         public string Email { get; set; }
-    }
 
-    public class userRole
+
+    }*/
+
+    /*
+    public class Role
     {
         [Required]
-        [Key, Column(Order=0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Display(Name = "Ejamaat ID")]
-        public Int64 UserId { get; set; }
-    }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name = "Role Id")]
+        public int RoleId { get; set; }
 
-    public class UserDBContext : DbContext
+        [Required]
+        [Display(Name = "Role Name")]
+        public string RoleName { get; set; }
+
+        [Display(Name = "Description")]
+        public string Description { get; set; }
+
+    }*/
+
+     /* 
+    public class UserRole
     {
-        public DbSet<User> Users { get; set; }
+        [Required]
+        [ForeignKey("UserId")]
+        public User User { get; set; }
+
+        [Required]
+        [ForeignKey("RoleId")]
+        [Display(Name = "Role Id")]
+        public Role Role { get; set; }
+    }*/
+
+    /*
+    public class Region
+    {       
+        [Required]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name="Region Id")]
+        public int RegionId { get; set; }
+
+        //[ForeignKey("RegionTypeId")]
+        //public RegionType RegionType { get; set; }
+
+        //public short RegionTypeId { get; set; }
+
+        [Required]
+        [Display(Name = "Region Name")]
+        public string RegionName { get; set; }
+
+        [Display(Name="Parent Region Id")]
+        public int ParentRegionId { get; set; }
+
+        [Display(Name = "Is Active")]
+        public bool IsActive { get; set; }
+
+        
+        //public virtual ICollection<SabaqGroup> SabaqGroups { get; set; }
+        //public virtual ICollection<User> Users { get; set; }
     }
+    */
 }
