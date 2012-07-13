@@ -95,6 +95,23 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SQMSDB.mdf" />
+    <Content Include="App_Data\SQMSDB_log.LDF">
+      <DependentUpon>SQMSDB.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\images\img01.gif" />
+    <Content Include="Content\images\img02.gif" />
+    <Content Include="Content\images\img03.gif" />
+    <Content Include="Content\images\img04.jpg" />
+    <Content Include="Content\images\img05.jpg" />
+    <Content Include="Content\images\img06.jpg" />
+    <Content Include="Content\images\img07.gif" />
+    <Content Include="Content\images\img08.jpg" />
+    <Content Include="Content\images\img09.jpg" />
+    <Content Include="Content\images\img10.jpg" />
+    <Content Include="Content\images\img11.gif" />
+    <Content Include="Content\images\spacer.gif" />
+    <Content Include="Content\Menu.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -133,7 +150,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -163,9 +182,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

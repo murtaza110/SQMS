@@ -8,7 +8,6 @@ using System.Data.Entity;
 
 namespace SQMS.Web.Models
 {
-    /*
     public class ChangePasswordModel
     {
         [Required]
@@ -65,102 +64,4 @@ namespace SQMS.Web.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
-
-    public class User
-    {
-        [Required]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Display(Name = "Ejamaat ID")]
-        public Int64 UserId{ get; set;}
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password{get; set;}
-
-        [Display(Name = "Title")]
-        public string Title { get; set; }
-
-        [Required]
-        [Display(Name = "Name")]
-        public string FirstName{get; set;}
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
-
-        [DataType(DataType.Date)]
-        [Display(Name = "Date of Birth")]
-        public DateTime DateOfBirth { get; set; }
-
-        [Required]
-        [DataType(DataType.EmailAddress)]
-        [Display(Name = "Email address")]
-        public string Email { get; set; }
-
-
-    }*/
-
-    /*
-    public class Role
-    {
-        [Required]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Display(Name = "Role Id")]
-        public int RoleId { get; set; }
-
-        [Required]
-        [Display(Name = "Role Name")]
-        public string RoleName { get; set; }
-
-        [Display(Name = "Description")]
-        public string Description { get; set; }
-
-    }*/
-
-     /* 
-    public class UserRole
-    {
-        [Required]
-        [ForeignKey("UserId")]
-        public User User { get; set; }
-
-        [Required]
-        [ForeignKey("RoleId")]
-        [Display(Name = "Role Id")]
-        public Role Role { get; set; }
-    }*/
-
-    /*
-    public class Region
-    {       
-        [Required]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Display(Name="Region Id")]
-        public int RegionId { get; set; }
-
-        //[ForeignKey("RegionTypeId")]
-        //public RegionType RegionType { get; set; }
-
-        //public short RegionTypeId { get; set; }
-
-        [Required]
-        [Display(Name = "Region Name")]
-        public string RegionName { get; set; }
-
-        [Display(Name="Parent Region Id")]
-        public int ParentRegionId { get; set; }
-
-        [Display(Name = "Is Active")]
-        public bool IsActive { get; set; }
-
-        
-        //public virtual ICollection<SabaqGroup> SabaqGroups { get; set; }
-        //public virtual ICollection<User> Users { get; set; }
-    }
-    */
 }

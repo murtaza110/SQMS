@@ -9,7 +9,8 @@ using SQMS.Web.Models;
 using SQMS.Web;
 
 namespace SQMS.Web.Controllers
-{ 
+{
+    [Authorize]
     public class RegionTypeController : Controller
     {
         private SQMSDBContext db = new SQMSDBContext();

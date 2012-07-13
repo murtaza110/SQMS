@@ -1,218 +1,210 @@
-﻿/*----------------------------------------------------------
-The base color for this template is #5c87b2. If you'd like
-to use a different color start by replacing all instances of
-#5c87b2 with your new color.
-----------------------------------------------------------*/
-body {
-    background-color: #5c87b2;
-    font-size: .85em;
-    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
-    margin: 0;
-    padding: 0;
-    color: #696969;
+﻿body {
+	margin: 0;
+	padding: 0;
+	background: #E3E7ED url('images/img01.gif') repeat-x left top;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #787878;
 }
 
-a:link {
-    color: #034af3;
-    text-decoration: underline;
+/* Header */
+
+#header {
+	width: 968px;
+	height: 150px;
+	margin: 0 auto;
+	background: url(images/img02.gif) no-repeat left top;
 }
 
-a:visited {
-    color: #505abc;
+/* Logo */
+
+#logo {
+	float: left;
+	width: 968px;
+	height: 60px;
+	color: #616161;
 }
 
-a:hover {
-    color: #1d60ff;
-    text-decoration: none;
+#logo h1, #logo p {
+	margin: 0;
+	padding: 0;
 }
 
-a:active {
-    color: #12eb87;
+#logo h1 {
+	float: left;
+	padding: 80px 0 0 80px;
+	letter-spacing: -1px;
+	text-transform: lowercase;
+	font-size: 2.6em;
 }
 
-p, ul {
-    margin-bottom: 20px;
-    line-height: 1.6em;
+#logo p {
+	float: left;
+	margin: 0;
+	padding: 90px 10px;
+	font: normal 14px Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+} 
+
+#logo a {
+	border: none;
+	background: none;
+	text-decoration: none;
+	color: #616161;
 }
 
-header,
-footer,
-nav,
-section {
-    display: block;
+#wrapper {
+	width: 968px;
+	margin: 0 auto;
+	padding: 0;
 }
 
-/* HEADINGS   
-----------------------------------------------------------*/
-h1, h2, h3, h4, h5, h6 {
-    font-size: 1.5em;
-    color: #000;
+/* Menu */
+
+#menu {
+	width: 968px;
+	height: 50px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 0;
+	padding-left: 10px;
+	list-style: none;
+	line-height: normal;
+}
+
+#menu li {
+	float: left;
+	height: 50px;
+	background: url(images/img03.gif) no-repeat right top;
+}
+
+#menu a {
+	display: block;
+	margin-top: 10px;
+	margin-right: 3px;
+	padding: 7px 20px 7px 20px;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #FFFFFF;
+	border: none;
+}
+
+#menu a:hover, #menu .current_page_item a {
+}
+
+#menu a:hover {
+	text-decoration: underline;
+}
+
+/* Page */
+
+#page {
+	width: 968px;
+	margin: 0 auto;
+	background: url(images/img05.jpg) repeat-y left top;
+}
+
+#page-bgtop {
+	background: url(images/img04.jpg) no-repeat left top;
+}
+
+#page-bgbtm {
+	background: url(images/img06.jpg) no-repeat left bottom;
+}
+
+/* Content */
+
+#content {
+	/*float: right;
+	width: 700px;
+	padding: 60px 20px 0 0;*/
+	padding: 60px 20px 0 20px;
+}
+
+.post {
+	margin-bottom: 8px;
+	background: url(Images/img09.jpg) repeat-y left top;
+}
+
+.post-bgtop {
+	background: url(images/img08.jpg) no-repeat left top;
+}
+
+.post-bgbtm {
+	background: url(images/img10.jpg) no-repeat left bottom;
+}
+
+.post .title {
+	padding-top: 15px;
+	padding-left: 20px;
+	color: #000000;
+}
+
+.post .title a {
+	color: #000000;
+	border: none;
+}
+
+.post .meta {
+	border-bottom: 1px dashed #B5DEF4;
+	padding-left: 20px;
+	padding-bottom: 5px;
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-style: italic;
+}
+
+.post .entry {
+	padding: 10px 20px 15px 20px;
+	text-align: justify;
+}
+
+/* HEADINGS  */
+
+h1, h2, h3 {
+	margin: 0;
+	padding: 0;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-weight: normal;
+	color: #F93D00;
 }
 
 h1 {
-    font-size: 2em;
-    padding-bottom: 0;
-    margin-bottom: 0;
+	font-size: 2em;
 }
 
 h2 {
-    padding: 0 0 10px 0;
+	font-size: 1.6em;
 }
 
 h3 {
-    font-size: 1.2em;
+	font-size: 1.6em;
 }
 
-h4 {
-    font-size: 1.1em;
+p, ul, ol {
+	margin-top: 0;
+	line-height: 180%;
 }
 
-h5, h6 {
-    font-size: 1em;
+ul, ol {
 }
 
-/* PRIMARY LAYOUT ELEMENTS   
-----------------------------------------------------------*/
-
-/* you can specify a greater or lesser percentage for the 
-page width. Or, you can specify an exact pixel width. */
-.page {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+a {
+	text-decoration: none;
+	border-bottom: 1px dotted #999999;
+	color: #417FDA;
 }
 
-header, #header {
-    position: relative;
-    margin-bottom: 0px;
-    color: #000;
-    padding: 0;
+a:hover {
 }
 
-header h1, #header h1 {
-    font-weight: bold;
-    padding: 5px 0;
-    margin: 0;
-    color: #fff;
-    border: none;
-    line-height: 2em;
-    font-size: 32px !important;
-    text-shadow: 1px 1px 2px #111;
-}
-
-#main {
-    padding: 30px 30px 15px 30px;
-    background-color: #fff;
-    border-radius: 4px 0 0 0;
-    -webkit-border-radius: 4px 0 0 0;
-    -moz-border-radius: 4px 0 0 0;
-}
-
-footer, 
-#footer {
-    background-color: #fff;
-    color: #999;
-    padding: 10px 0;
-    text-align: center;
-    line-height: normal;
-    margin: 0 0 30px 0;
-    font-size: .9em;
-    border-radius: 0 0 4px 4px;
-    -webkit-border-radius: 0 0 4px 4px;
-    -moz-border-radius: 0 0 4px 4px;
-}
-
-/* TAB MENU   
-----------------------------------------------------------*/
-ul#menu {
-    border-bottom: 1px #5C87B2 solid;
-    padding: 0 0 2px;
-    position: relative;
-    margin: 0;
-    text-align: right;
-}
-
-ul#menu li {
-    display: inline;
-    list-style: none;
-}
-
-ul#menu li#greeting {
-    padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
-    color: #fff;
-}
-
-ul#menu li a {
-    padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
-    background-color: #e8eef4;
-    color: #034af3;
-    border-radius: 4px 4px 0 0;
-    -webkit-border-radius: 4px 4px 0 0;
-    -moz-border-radius: 4px 4px 0 0;
-}
-
-ul#menu li a:hover {
-    background-color: #fff;
-    text-decoration: none;
-}
-
-ul#menu li a:active {
-    background-color: #a6e2a6;
-    text-decoration: none;
-}
-
-ul#menu li.selected a {
-    background-color: #fff;
-    color: #000;
-}
-
-/* FORM LAYOUT ELEMENTS   
-----------------------------------------------------------*/
-
-fieldset {
-    border: 1px solid #ddd;
-    padding: 0 1.4em 1.4em 1.4em;
-    margin: 0 0 1.5em 0;
-}
-
-legend {
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-textarea {
-    min-height: 75px;
-}
-
-input[type="text"], 
-input[type="password"] {
-    border: 1px solid #ccc;
-    padding: 2px;
-    font-size: 1.2em;
-    color: #444;
-    width: 200px;
-}
-
-select {
-    border: 1px solid #ccc;
-    padding: 2px;
-    font-size: 1.2em;
-    color: #444;
-}
-
-input[type="submit"] {
-    font-size: 1.2em;
-    padding: 5px;
-}
-
-/* TABLE
-----------------------------------------------------------*/
+/* TABLE */
 
 table {
     border: solid 1px #e8eef4;
@@ -231,8 +223,90 @@ table th {
     border: solid 1px #e8eef4;
 }
 
-/* MISC  
-----------------------------------------------------------*/
+/* Sidebar */
+
+#sidebar {
+	float: left;
+	width: 220px;
+	padding: 60px 0 0 20px;
+	color: #787878;
+}
+
+#sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#sidebar li {
+	margin: 0;
+	padding: 0;
+}
+
+#sidebar li ul {
+	padding-bottom: 30px;
+}
+
+#sidebar li li {
+	line-height: 35px;
+	border-bottom: 1px dashed #D2D4C9;
+}
+
+#sidebar li li span {
+	display: block;
+	margin-top: -20px;
+	padding: 0;
+	font-size: 11px;
+	font-style: italic;
+}
+
+#sidebar h2 {
+	height: 32px;
+	padding: 8px 0 0 30px;
+	background: url(images/img11.gif) no-repeat left top;
+	letter-spacing: -.5px;
+	color: #FFFFFF;
+}
+
+#sidebar p {
+	padding-bottom: 20px;
+	text-align: justify;
+}
+
+#sidebar a {
+	color: #417FDA;
+	border: none;
+}
+
+#sidebar a:hover {
+	text-decoration: underline;
+	color: #787878;
+}
+
+/* Footer */
+
+#footer {
+	height: 50px;
+	margin: 0 auto;
+	padding: 0px 0 15px 0;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #B2B2B2;
+}
+
+#footer p {
+	margin: 0;
+	line-height: normal;
+	font-size: 9px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+#footer a {
+	color: #3D444F;
+}
+
+/* MISC */
+
 .clear {
     clear: both;
 }
@@ -241,42 +315,8 @@ table th {
     color: Red;
 }
 
-nav, 
-#menucontainer {
-    margin-top: 40px;
-}
+/* Styles for validation helpers */
 
-div#title {
-    display: block;
-    float: left;
-    text-align: left;
-}
-
-#logindisplay {
-    font-size: 1.1em;
-    display: block;
-    text-align: right;
-    margin: 10px;
-    color: White;
-}
-
-#logindisplay a:link {
-    color: white;
-    text-decoration: underline;
-}
-
-#logindisplay a:visited {
-    color: white;
-    text-decoration: underline;
-}
-
-#logindisplay a:hover {
-    color: white;
-    text-decoration: none;
-}
-
-/* Styles for validation helpers
------------------------------------------------------------*/
 .field-validation-error {
     color: #ff0000;
 }
@@ -299,8 +339,8 @@ div#title {
     display: none;
 }
 
-/* Styles for editor and display helpers
-----------------------------------------------------------*/
+/* Styles for editor and display helpers */
+
 .display-label, 
 .editor-label {
     margin: 1em 0 0 0;
@@ -323,18 +363,23 @@ div#title {
     width: 6em;
 }
 
-/* Styles to test new editor and display templates. 
-----------------------------------------------------------*/ 
-.loud-1 { 
-    font-weight: bold; 
-    color: Red; 
-} 
-.loud-2 { 
-    font-size:  2.0em; 
-    color:Green; 
-} 
-.loud-3 { 
-    font-style: italic; 
-    color: yellow; 
-    background-color: blue; 
+/* Calendar */
+
+#calendar {
+}
+
+#calendar_wrap {
+	padding: 20px;
+}
+
+#calendar table {
+	width: 100%;
+}
+
+#calendar tbody td {
+	text-align: center;
+}
+
+#calendar #next {
+	text-align: right;
 }

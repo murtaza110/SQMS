@@ -9,10 +9,9 @@ using SQMS.Web.Models;
 
 namespace SQMS.Web.Controllers
 { 
-    /*
     public class UsersController : Controller
     {
-        private SQMSDBContext db = new SQMSDBContext();
+        private UserDBContext db = new UserDBContext();
 
         //
         // GET: /Users/
@@ -105,5 +104,5 @@ namespace SQMS.Web.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
-    }*/
+    }
 }
