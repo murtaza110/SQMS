@@ -57,11 +57,12 @@ namespace SQMS.Web.Models
         public Nullable<int> MohallaId { get; set; }
 
         [Display(Name = "Secret Question")]
-        public Nullable<short> SecurityQuestionId { get; set; }
+        public string SecurityQuestion { get; set; }
 
         [Display(Name = "Secret Answer")]
         public string SecurityAnswer { get; set; }
 
+        //[Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -75,11 +76,19 @@ namespace SQMS.Web.Models
         [ForeignKey("MohallaId")]
         public virtual Region Region { get; set; }
 
-        [ForeignKey("SecurityQuestionId")]
-        public virtual SecurityQuestion SecurityQuestion { get; set; }
+        //[ForeignKey("SecurityQuestionId")]
+        //public virtual SecurityQuestion SecurityQuestion { get; set; }
 
         public virtual ICollection<SabaqGroup> SabaqGroups { get; set; }
         public virtual ICollection<SabaqRegistration> SabaqRegistrations { get; set; }        
         public virtual ICollection<Role> Roles { get; set; }
+
+        public string NameToShow
+        {
+            get
+            {
+                return Title + " " + FirstName + " " + LastName;
+            }
+        }
     }
 }

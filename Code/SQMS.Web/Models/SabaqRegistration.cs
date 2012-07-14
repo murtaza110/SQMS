@@ -21,8 +21,14 @@ namespace SQMS.Web.Models
         public short SabaqStatusId { get; set; }
 
         public virtual ICollection<SabaqAttendance> SabaqAttendances { get; set; }
+
+        [ForeignKey("SabaqGroupId")]
         public virtual SabaqGroup SabaqGroup { get; set; }
+
+        [ForeignKey("SabaqStatusId")]
         public virtual SabaqStatus SabaqStatu { get; set; }
+
+        [ForeignKey("MemberId")]
         public virtual User User { get; set; }
     }
 }

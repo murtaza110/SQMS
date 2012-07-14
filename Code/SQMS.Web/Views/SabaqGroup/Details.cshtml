@@ -1,0 +1,106 @@
+﻿@model SQMS.Web.Models.SabaqGroup
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>SabaqGroup</legend>
+
+    <div class="display-label">GroupName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GroupName)
+    </div>
+
+    <div class="display-label">Nisaab</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nisaab.NisaabName)
+    </div>
+
+    <div class="display-label">User</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User.Title)
+    </div>
+
+    <div class="display-label">Region</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Region.RegionName)
+    </div>
+
+    <div class="display-label">CreationDate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreationDate)
+    </div>
+
+    <div class="display-label">WeekDays</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WeekDays)
+    </div>
+
+    <div class="display-label">StartDate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+
+    <div class="display-label">Duration</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Duration)
+    </div>
+
+    <div class="display-label">SabaqStatus</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SabaqStatus.SabaqStatusName)
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>Registered Members</legend>
+    <p>
+        @Html.ActionLink("Register Member", "CreateSabaqRegistration", new { id = Model.SabaqGroupId })
+    </p>
+    <table border="1" width="100%">
+        <col align="center" width="30%" />
+        <col align="center" width="30%" />
+        <col align="center" width="10%" />
+        <col align="center" width="30%" />
+        <tr>
+            <th align="center">
+                Ejamaat ID
+            </th>
+            <th align="center">
+                Name
+            </th>
+            <th align="center">
+                Compulsory
+            </th>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model.SabaqRegistrations)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(book => item.MemberId)
+                </td>
+                <td>
+                    @Html.DisplayFor(book => item.User.NameToShow)
+                </td>
+                <td>
+                    @Html.DisplayFor(book => item.SabaqStatu.SabaqStatusName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditBook", new { id = item.SabaqRegId }) |
+                   @* @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookId  })*@
+                </td>
+            </tr>
+        }
+    </table>
+</fieldset>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.SabaqGroupId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

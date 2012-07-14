@@ -1,0 +1,33 @@
+﻿@model SQMS.Web.Models.SabaqRegistration
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>SabaqRegistration</legend>
+
+    <div class="display-label">SabaqGroup</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SabaqGroup.GroupName)
+    </div>
+
+    <div class="display-label">MemberId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MemberId)
+    </div>
+
+    <div class="display-label">SabaqStatu</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SabaqStatu.SabaqStatusName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

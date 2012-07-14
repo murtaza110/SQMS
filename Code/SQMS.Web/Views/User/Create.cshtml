@@ -103,11 +103,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.SecurityQuestionId, "SecurityQuestion")
+            @Html.LabelFor(model => model.SecurityQuestion, "SecurityQuestion")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("SecurityQuestionId", String.Empty)
-            @Html.ValidationMessageFor(model => model.SecurityQuestionId)
+            @Html.EditorFor(model => model.SecurityQuestion)
+            @Html.ValidationMessageFor(model => model.SecurityQuestion)
         </div>
 
         <div class="editor-label">

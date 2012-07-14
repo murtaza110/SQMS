@@ -1,4 +1,4 @@
-﻿@model SQMS.Web.Models.Nisaab
+﻿@model SQMS.Web.Models.SabaqRegistration
 
 @{
     ViewBag.Title = "Create";
@@ -12,30 +12,30 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>Nisaab</legend>
+        <legend>SabaqRegistration</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.NisaabName)
+            @Html.LabelFor(model => model.SabaqGroupId, "SabaqGroup")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.NisaabName)
-            @Html.ValidationMessageFor(model => model.NisaabName)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PrereqNisaabId, "Prerequisite Nissab")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("PrereqNisaabId", String.Empty) @*model => model.PrereqNisaabId*@
-            @Html.ValidationMessageFor(model => model.PrereqNisaabId)
+            @Html.DropDownList("SabaqGroupId")
+            @Html.ValidationMessageFor(model => model.SabaqGroupId)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.NumPrereqBooks)
+            @Html.LabelFor(model => model.MemberId)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.NumPrereqBooks)
-            @Html.ValidationMessageFor(model => model.NumPrereqBooks)
+            @Html.DropDownList("MemberId")
+            @Html.ValidationMessageFor(model => model.MemberId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SabaqStatusId, "SabaqStatu")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SabaqStatusId")
+            @Html.ValidationMessageFor(model => model.SabaqStatusId)
         </div>
 
         <p>

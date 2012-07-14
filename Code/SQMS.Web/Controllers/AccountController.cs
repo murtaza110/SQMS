@@ -11,7 +11,7 @@ namespace SQMS.Web.Controllers
 {
     public class AccountController : Controller
     {
-        SQMSDBContext db = new SQMSDBContext();
+        private SQMSDBContext db = new SQMSDBContext();
 
         //
         // GET: /Account/LogOn

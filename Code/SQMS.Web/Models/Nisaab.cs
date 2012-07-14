@@ -17,11 +17,19 @@ namespace SQMS.Web.Models
         [Key]
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
         public int NisaabId { get; set; }
+
+        [Display(Name = "Nisaab Name")]
         public string NisaabName { get; set; }
+
+        [Display(Name = "Prerequiste Nisaab")]
         public Nullable<int> PrereqNisaabId { get; set; }
+
         public Nullable<int> NumPrereqBooks { get; set; }
 
         public virtual ICollection<Book> Books { get; set; }
         public virtual ICollection<SabaqGroup> SabaqGroups { get; set; }
+         
+        [ForeignKey("PrereqNisaabId")] 
+        public virtual Nisaab Nissab1 { get; set; }
     }
 }

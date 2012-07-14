@@ -1,30 +1,72 @@
 ﻿@model SQMS.Web.Models.Nisaab
-
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
+<h2>
+    Details</h2>
 <fieldset>
     <legend>Nisaab</legend>
-
-    <div class="display-label">NisaabName</div>
+    <div class="display-label">
+        NisaabName</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.NisaabName)
     </div>
-
-    <div class="display-label">PrereqNisaabId</div>
+    <div class="display-label">
+        PrereqNisaabId</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.PrereqNisaabId)
+        @Html.DisplayFor(model => model.Nissab1.NisaabName)
     </div>
-
-    <div class="display-label">NumPrereqBooks</div>
+    <div class="display-label">
+        NumPrereqBooks</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.NumPrereqBooks)
     </div>
 </fieldset>
+<fieldset>
+    <legend>Books</legend>
+    <p>
+        @Html.ActionLink("Add New Book", "CreateBook", new { id = Model.NisaabId })
+    </p>
+    <table border="1" width="100%">
+        <col align="center" width="30%" />
+        <col align="center" width="30%" />
+        <col align="center" width="10%" />
+        <col align="center" width="30%" />
+        <tr>
+            <th align="center">
+                Book Title
+            </th>
+            <th align="center">
+                Author
+            </th>
+            <th align="center">
+                Compulsory
+            </th>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model.Books)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(book => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(book => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(book => item.IsCompulsory)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditBook", new { id = item.BookId }) |
+                   @* @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookId  })*@
+                </td>
+            </tr>
+        }
+    </table>
+</fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.NisaabId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.NisaabId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

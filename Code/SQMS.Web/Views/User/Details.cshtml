@@ -61,7 +61,7 @@
 
     <div class="display-label">SecurityQuestion</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.SecurityQuestion.SecurityQuestion1)
+        @Html.DisplayFor(model => model.SecurityQuestion)
     </div>
 
     <div class="display-label">SecurityAnswer</div>
@@ -69,15 +69,15 @@
         @Html.DisplayFor(model => model.SecurityAnswer)
     </div>
 
-    <div class="display-label">Password</div>
+   @* <div class="display-label">Password</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Password)
-    </div>
+    </div>*@
 
-    <div class="display-label">IsActive</div>
+   @* <div class="display-label">IsActive</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.IsActive)
-    </div>
+    </div>*@
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.UserId }) |

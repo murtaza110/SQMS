@@ -9,7 +9,7 @@ namespace SQMS.Web
 {
     public class SQMSMembershipProvider : MembershipProvider
     {
-        SQMSDBContext db = new SQMSDBContext();
+        private SQMSDBContext db = new SQMSDBContext();
 
         public override string ApplicationName
         {
@@ -175,7 +175,7 @@ namespace SQMS.Web
 
     public class SQLMSRoleProvider : RoleProvider
     {
-        public SQMSDBContext db = new SQMSDBContext();
+        private SQMSDBContext db = new SQMSDBContext();
 
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
         {

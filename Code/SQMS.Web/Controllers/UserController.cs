@@ -19,8 +19,8 @@ namespace SQMS.Web.Controllers
         // GET: /User/
 
         public ViewResult Index()
-        {            
-            var users = db.Users.Include(u => u.Region).Include(u => u.SecurityQuestion);
+        {
+            var users = db.Users.Include(u => u.Region);
             return View(users.ToList());
         }
 
@@ -39,10 +39,10 @@ namespace SQMS.Web.Controllers
         public ActionResult Create()
         {
             //ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionId == 4), "RegionId", "RegionName");
-            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5), "RegionId", "RegionNameShow");
-            ViewBag.SecurityQuestionId = new SelectList(db.SecurityQuestions, "SecurityQuestionId", "SecurityQuestion1");
+            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5).Include(u => u.Region1), "RegionId", "RegionNameShow");
+            //ViewBag.SecurityQuestionId = new SelectList(db.SecurityQuestions, "SecurityQuestionId", "SecurityQuestion1");
             return View();
-        } 
+        }
 
         //
         // POST: /User/Create
@@ -53,24 +53,31 @@ namespace SQMS.Web.Controllers
             if (ModelState.IsValid)
             {
                 user.IsActive = true;
+
+                string stUserID = user.UserId.ToString();
+                string stPassword = "K";
+                if (stUserID.Length >= 3)
+                    stPassword += stUserID.Substring(stUserID.Length - 3, 3);
+
+                user.Password = stPassword;
                 db.Users.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
 
-            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5), "RegionId", "RegionNameShow", user.MohallaId);
-            ViewBag.SecurityQuestionId = new SelectList(db.SecurityQuestions, "SecurityQuestionId", "SecurityQuestion1", user.SecurityQuestionId);
+            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5).Include(u => u.Region1), "RegionId", "RegionNameShow", user.MohallaId);
+            //ViewBag.SecurityQuestionId = new SelectList(db.SecurityQuestions, "SecurityQuestionId", "SecurityQuestion1", user.SecurityQuestionId);
             return View(user);
         }
-        
+
         //
         // GET: /User/Edit/5
- 
+
         public ActionResult Edit(long id)
         {
             User user = db.Users.Find(id);
-            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5), "RegionId", "RegionNameShow", user.MohallaId);
-            ViewBag.SecurityQuestionId = new SelectList(db.SecurityQuestions, "SecurityQuestionId", "SecurityQuestion1", user.SecurityQuestionId);
+            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5).Include(u => u.Region1), "RegionId", "RegionNameShow", user.MohallaId);
+            //ViewBag.SecurityQuestionId = new SelectList(db.SecurityQuestions, "SecurityQuestionId", "SecurityQuestion1", user.SecurityQuestionId);
             return View(user);
         }
 
@@ -86,14 +93,14 @@ namespace SQMS.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5), "RegionId", "RegionNameShow", user.MohallaId);
-            ViewBag.SecurityQuestionId = new SelectList(db.SecurityQuestions, "SecurityQuestionId", "SecurityQuestion1", user.SecurityQuestionId);
+            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5).Include(u => u.Region1), "RegionId", "RegionNameShow", user.MohallaId);
+            //ViewBag.SecurityQuestionId = new SelectList(db.SecurityQuestions, "SecurityQuestionId", "SecurityQuestion1", user.SecurityQuestionId);
             return View(user);
         }
 
         //
         // GET: /User/Delete/5
- 
+
         public ActionResult Delete(long id)
         {
             User user = db.Users.Find(id);
@@ -105,7 +112,7 @@ namespace SQMS.Web.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(long id)
-        {            
+        {
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
@@ -116,6 +123,6 @@ namespace SQMS.Web.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
-        }        
+        }
     }
 }

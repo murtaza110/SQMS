@@ -1,0 +1,48 @@
+﻿@model SQMS.Web.Models.Book
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Book</legend>
+
+    <div class="display-label">Title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">Nisaab</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nisaab.NisaabName)
+    </div>
+
+    <div class="display-label">IsCompulsory</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsCompulsory)
+    </div>
+
+    <div class="display-label">Author</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Author)
+    </div>
+
+    <div class="display-label">YearPublished</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.YearPublished)
+    </div>
+
+    <div class="display-label">Tags</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tags)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

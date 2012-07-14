@@ -20,7 +20,8 @@ namespace SQMS.Web.Controllers
 
         public ViewResult Index()
         {
-            return View(db.Nisaabs.ToList());
+            var nisaabs = db.Nisaabs.Include(r => r.Nissab1);
+            return View(nisaabs.ToList());
         }
 
         //
@@ -37,6 +38,7 @@ namespace SQMS.Web.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.PrereqNisaabId = new SelectList(db.Nisaabs, "NisaabId", "NisaabName");
             return View();
         } 
 
@@ -53,6 +55,7 @@ namespace SQMS.Web.Controllers
                 return RedirectToAction("Index");  
             }
 
+            ViewBag.PrereqNisaabId = new SelectList(db.Nisaabs, "NisaabId", "NisaabName", nisaab.PrereqNisaabId);
             return View(nisaab);
         }
         
@@ -62,6 +65,7 @@ namespace SQMS.Web.Controllers
         public ActionResult Edit(int id)
         {
             Nisaab nisaab = db.Nisaabs.Find(id);
+            ViewBag.PrereqNisaabId = new SelectList(db.Nisaabs, "NisaabId", "NisaabName", nisaab.PrereqNisaabId);
             return View(nisaab);
         }
 
@@ -77,6 +81,8 @@ namespace SQMS.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.PrereqNisaabId = new SelectList(db.Nisaabs, "NisaabId", "NisaabName", nisaab.PrereqNisaabId);
             return View(nisaab);
         }
 
@@ -99,6 +105,64 @@ namespace SQMS.Web.Controllers
             db.Nisaabs.Remove(nisaab);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        //
+        // GET: /Nisaab/Create
+
+        public ActionResult CreateBook(int id)
+        {
+            List<Nisaab> nisaab = new List<Nisaab>();
+            nisaab.Add(db.Nisaabs.Find(id));
+            ViewBag.NisaabId = new SelectList(nisaab, "NisaabId", "NisaabName", id);         
+            return View();
+        }
+
+        //
+        // POST: /Nisaab/Create
+
+        [HttpPost]
+        public ActionResult CreateBook(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Books.Add(book);
+                db.SaveChanges();
+                return RedirectToAction("Details", new { id = book.NisaabId });
+            }
+
+            List<Nisaab> nisaab = new List<Nisaab>();
+            nisaab.Add(db.Nisaabs.Find(book.NisaabId));
+            ViewBag.NisaabId = new SelectList(nisaab, "NisaabId", "NisaabName", book.NisaabId);
+            return View(book);
+        }
+
+
+        //
+        // GET: /Nisaab/Edit/5
+
+        public ActionResult EditBook(int id)
+        {
+            Book book = db.Books.Find(id);
+            ViewBag.NisaabId = new SelectList(db.Nisaabs, "NisaabId", "NisaabName", book.NisaabId);
+            return View(book);
+        }
+
+        //
+        // POST: /Nisaab/Edit/5
+
+        [HttpPost]
+        public ActionResult EditBook(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(book).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Details", new { id = book.NisaabId });
+            }
+
+            ViewBag.NisaabId = new SelectList(db.Nisaabs, "NisaabId", "NisaabName", book.NisaabId);
+            return View(book);
         }
 
         protected override void Dispose(bool disposing)

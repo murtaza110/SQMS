@@ -15,10 +15,14 @@ namespace SQMS.Web
         {
         }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    throw new UnintentionalCodeFirstException();
-        //}
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+               .HasMany(c => c.Roles).WithMany(i => i.Users)
+               .Map(t => t.MapLeftKey("UserId")
+                   .MapRightKey("RoleId")
+                   .ToTable("UserRoles"));
+        }
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Nisaab> Nisaabs { get; set; }
@@ -33,7 +37,7 @@ namespace SQMS.Web
         public DbSet<SabaqRegistration> SabaqRegistrations { get; set; }
         public DbSet<SabaqRequest> SabaqRequests { get; set; }
         public DbSet<SabaqStatus> SabaqStatus { get; set; }
-        public DbSet<SecurityQuestion> SecurityQuestions { get; set; }
+        //public DbSet<SecurityQuestion> SecurityQuestions { get; set; }
         public DbSet<User> Users { get; set; }
     }
 }
