@@ -167,7 +167,7 @@ namespace SQMS.Web
         public override bool ValidateUser(string username, string password)
         {
             User user = db.Users.Find(Convert.ToInt64(username));
-            if (user != null && user.Password.Equals(password))
+            if (user != null && user.IsActive && user.Password.Equals(password))
                 return true;
             return false;
         }
