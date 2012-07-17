@@ -32,8 +32,12 @@ namespace SQMS.Web.Models
 
         [Required]
         public int MohallaId { get; set; }
+
+        [DataType(DataType.Date)]
         public System.DateTime CreationDate { get; set; }
         public string WeekDays { get; set; }
+
+        [DataType(DataType.Date)]
         public System.DateTime StartDate { get; set; }
         public Nullable<byte> Duration { get; set; }
 

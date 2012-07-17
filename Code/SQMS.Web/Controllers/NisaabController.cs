@@ -121,7 +121,7 @@ namespace SQMS.Web.Controllers
         //
         // POST: /Nisaab/Create
 
-        [HttpPost]
+        [HttpPost, ActionName("CreateBook")]
         public ActionResult CreateBook(Book book)
         {
             if (ModelState.IsValid)
@@ -165,6 +165,26 @@ namespace SQMS.Web.Controllers
             return View(book);
         }
 
+        //
+        // GET: /Book/Delete/5
+
+        public ActionResult DeleteBook(int id)
+        {
+            Book book = db.Books.Find(id);
+            return View(book);
+        }
+
+        //
+        // POST: /Book/Delete/5
+
+        [HttpPost, ActionName("DeleteBook")]
+        public ActionResult DeleteBookConfirmed(int id)
+        {
+            Book book = db.Books.Find(id);
+            db.Books.Remove(book);
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = book.NisaabId });
+        }
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

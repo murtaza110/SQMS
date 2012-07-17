@@ -9,7 +9,8 @@ using SQMS.Web.Models;
 using SQMS.Web;
 
 namespace SQMS.Web.Controllers
-{ 
+{
+    [Authorize]
     public class SabaqGroupController : Controller
     {
         private SQMSDBContext db = new SQMSDBContext();
@@ -77,7 +78,7 @@ namespace SQMS.Web.Controllers
 
             ViewBag.NisaabId = new SelectList(db.Nisaabs, "NisaabId", "NisaabName", sabaqgroup.NisaabId);
             ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5).Include(d => d.Region1), "RegionId", "RegionName", sabaqgroup.MohallaId);
-            ViewBag.MoallimId = new SelectList(user, "UserId", "Title", sabaqgroup.MoallimId);
+            ViewBag.MoallimId = new SelectList(user, "UserId", "NameToShow", sabaqgroup.MoallimId);
             ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", sabaqgroup.SabaqStatusId);
             return View(sabaqgroup);
         }
@@ -90,7 +91,7 @@ namespace SQMS.Web.Controllers
             SabaqGroup sabaqgroup = db.SabaqGroups.Find(id);
             ViewBag.NisaabId = new SelectList(db.Nisaabs, "NisaabId", "NisaabName", sabaqgroup.NisaabId);
             ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5).Include(d => d.Region1), "RegionId", "RegionName", sabaqgroup.MohallaId);
-            ViewBag.MoallimId = new SelectList(db.Users, "UserId", "Title", sabaqgroup.MoallimId);
+            ViewBag.MoallimId = new SelectList(db.Users, "UserId", "NameToShow", sabaqgroup.MoallimId);
             ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", sabaqgroup.SabaqStatusId);
             return View(sabaqgroup);
         }
@@ -109,7 +110,7 @@ namespace SQMS.Web.Controllers
             }
             ViewBag.NisaabId = new SelectList(db.Nisaabs, "NisaabId", "NisaabName", sabaqgroup.NisaabId);
             ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5).Include(d => d.Region1), "RegionId", "RegionName", sabaqgroup.MohallaId);
-            ViewBag.MoallimId = new SelectList(db.Users, "UserId", "Title", sabaqgroup.MoallimId);
+            ViewBag.MoallimId = new SelectList(db.Users, "UserId", "NameToShow", sabaqgroup.MoallimId);
             ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", sabaqgroup.SabaqStatusId);
             return View(sabaqgroup);
         }
@@ -146,7 +147,7 @@ namespace SQMS.Web.Controllers
 
             ViewBag.SabaqGroupId = new SelectList(sabaqGroup, "SabaqGroupId", "GroupName", id);
             ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", 2);
-            ViewBag.MemberId = new SelectList(db.Users, "UserId", "NameToShow");
+            ViewBag.MemberId = new SelectList(db.Users, "UserId", "UserID_Name");
             return View();
         }
 
@@ -168,58 +169,61 @@ namespace SQMS.Web.Controllers
 
             ViewBag.SabaqGroupId = new SelectList(sabaqGroup, "SabaqGroupId", "GroupName", sabaqregistration.SabaqGroupId);
             ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", sabaqregistration.SabaqStatusId);
-            ViewBag.MemberId = new SelectList(db.Users, "UserId", "NameToShow", sabaqregistration.MemberId);
+            ViewBag.MemberId = new SelectList(db.Users, "UserId", "UserID_Name", sabaqregistration.MemberId);
+            return View(sabaqregistration);
+        }
+
+        //
+        // GET: /SabaqRegistration/Edit/5
+
+        public ActionResult EditSabaqRegistration(long id)
+        {
+            SabaqRegistration sabaqregistration = db.SabaqRegistrations.Find(id);
+            ViewBag.SabaqGroupId = new SelectList(db.SabaqGroups, "SabaqGroupId", "GroupName", sabaqregistration.SabaqGroupId);
+            ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", sabaqregistration.SabaqStatusId);
+            ViewBag.MemberId = new SelectList(db.Users, "UserId", "UserID_Name", sabaqregistration.MemberId);
+
+            return View(sabaqregistration);
+        }
+
+        //
+        // POST: /SabaqRegistration/Edit/5
+
+        [HttpPost]
+        public ActionResult EditSabaqRegistration(SabaqRegistration sabaqregistration)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(sabaqregistration).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Details", new { id = sabaqregistration.SabaqGroupId });
+            }
+            ViewBag.SabaqGroupId = new SelectList(db.SabaqGroups, "SabaqGroupId", "GroupName", sabaqregistration.SabaqGroupId);
+            ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", sabaqregistration.SabaqStatusId);
+            ViewBag.MemberId = new SelectList(db.Users, "UserId", "UserID_Name", sabaqregistration.MemberId);
             return View(sabaqregistration);
         }
 
         ////
-        //// GET: /SabaqRegistration/Edit/5
-
-        //public ActionResult EditSabaqRegistration(long id)
-        //{
-        //    SabaqRegistration sabaqregistration = db.SabaqRegistrations.Find(id);
-        //    ViewBag.SabaqGroupId = new SelectList(db.SabaqGroups, "SabaqGroupId", "GroupName", sabaqregistration.SabaqGroupId);
-        //    ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", sabaqregistration.SabaqStatusId);
-        //    return View(sabaqregistration);
-        //}
-
-        ////
-        //// POST: /SabaqRegistration/Edit/5
-
-        //[HttpPost]
-        //public ActionResult EditSabaqRegistration(SabaqRegistration sabaqregistration)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(sabaqregistration).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.SabaqGroupId = new SelectList(db.SabaqGroups, "SabaqGroupId", "GroupName", sabaqregistration.SabaqGroupId);
-        //    ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", sabaqregistration.SabaqStatusId);
-        //    return View(sabaqregistration);
-        //}
-
-        ////
         //// GET: /SabaqRegistration/Delete/5
 
-        //public ActionResult DeleteSabaqRegistration(long id)
-        //{
-        //    SabaqRegistration sabaqregistration = db.SabaqRegistrations.Find(id);
-        //    return View(sabaqregistration);
-        //}
+        public ActionResult DeleteSabaqRegistration(long id)
+        {
+            SabaqRegistration sabaqregistration = db.SabaqRegistrations.Find(id);
+            return View(sabaqregistration);
+        }
 
-        ////
-        //// POST: /SabaqRegistration/Delete/5
+        //
+        // POST: /SabaqRegistration/Delete/5
 
-        //[HttpPost, ActionName("Delete")]
-        //public ActionResult DeleteConfirmedSabaqRegistration(long id)
-        //{
-        //    SabaqRegistration sabaqregistration = db.SabaqRegistrations.Find(id);
-        //    db.SabaqRegistrations.Remove(sabaqregistration);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost, ActionName("DeleteSabaqRegistration")]
+        public ActionResult DeleteConfirmedSabaqRegistration(long id)
+        {
+            SabaqRegistration sabaqregistration = db.SabaqRegistrations.Find(id);
+            db.SabaqRegistrations.Remove(sabaqregistration);
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = sabaqregistration.SabaqGroupId });
+        }
 
         protected override void Dispose(bool disposing)
         {

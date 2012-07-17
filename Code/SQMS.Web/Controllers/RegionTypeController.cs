@@ -11,6 +11,7 @@ using SQMS.Web;
 namespace SQMS.Web.Controllers
 {
     [Authorize]
+    [ChildActionOnly]
     public class RegionTypeController : Controller
     {
         private SQMSDBContext db = new SQMSDBContext();

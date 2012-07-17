@@ -1,0 +1,3 @@
+﻿@model DateTime
+@Html.TextBox("", Model.ToString("dd/MM/yyyy"), new { @class = "date" })
+@Html.TextBox("", Model.ToString("H:mm:ss zzz"), new { @class = "datetime" })

@@ -90,5 +90,13 @@ namespace SQMS.Web.Models
                 return Title + " " + FirstName + " " + LastName;
             }
         }
+
+        public string UserID_Name
+        {
+            get
+            {
+                return UserId + " - " + NameToShow;
+            }
+        }
     }
 }

@@ -24,6 +24,7 @@ namespace SQMS.Web.Models
         [Display(Name = "Prerequiste Nisaab")]
         public Nullable<int> PrereqNisaabId { get; set; }
 
+        [Display(Name = "Pre-requisite No. Of Books")]
         public Nullable<int> NumPrereqBooks { get; set; }
 
         public virtual ICollection<Book> Books { get; set; }

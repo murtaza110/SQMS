@@ -29,7 +29,15 @@ namespace SQMS.Web.Controllers
 
         public ViewResult Details(int id)
         {
-            Region region = db.Regions.Find(id);
+            var regions = db.Regions.Include(r => r.RegionType).Include(r => r.Region1);
+
+            Region region = null;
+            foreach (Region _region in regions)
+            {
+                if (_region.RegionId == id)
+                    region = _region;
+            }
+            //Region region = db.Regions.Find(id);
             return View(region);
         }
 
@@ -41,7 +49,7 @@ namespace SQMS.Web.Controllers
             ViewBag.RegionTypeId = new SelectList(db.RegionTypes, "RegionTypeId", "RegionTypeName");
             ViewBag.ParentRegionId = new SelectList(db.Regions, "RegionId", "RegionName");
             return View();
-        } 
+        }
 
         //
         // POST: /Region/Create
@@ -53,17 +61,17 @@ namespace SQMS.Web.Controllers
             {
                 db.Regions.Add(region);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
 
             ViewBag.RegionTypeId = new SelectList(db.RegionTypes, "RegionTypeId", "RegionTypeName", region.RegionTypeId);
             ViewBag.ParentRegionId = new SelectList(db.Regions, "RegionId", "RegionName", region.ParentRegionId);
             return View(region);
         }
-        
+
         //
         // GET: /Region/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             Region region = db.Regions.Find(id);
@@ -91,7 +99,7 @@ namespace SQMS.Web.Controllers
 
         //
         // GET: /Region/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             Region region = db.Regions.Find(id);
@@ -103,7 +111,7 @@ namespace SQMS.Web.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
+        {
             Region region = db.Regions.Find(id);
             db.Regions.Remove(region);
             db.SaveChanges();
