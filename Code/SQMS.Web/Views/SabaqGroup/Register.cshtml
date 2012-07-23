@@ -4,8 +4,8 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
+<h2>Sabaq Registration</h2>
+<p></p>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
@@ -22,12 +22,23 @@
             @Html.ValidationMessageFor(model => model.SabaqGroupId)
         </div>
 
+<<<<<<< HEAD:Code/SQMS.Web/Views/SabaqGroup/CreateSabaqRegistration.cshtml
         <div class="editor-label">
+=======
+       @* <div class="editor-label">
+>>>>>>> User listbox (partially implemented):Code/SQMS.Web/Views/SabaqGroup/Register.cshtml
             @Html.LabelFor(model => model.MemberId, "Ejamaat ID")
         </div>
         <div class="editor-field">
             @Html.DropDownList("MemberId")
             @Html.ValidationMessageFor(model => model.MemberId)
+        </div>*@
+
+        <div class="editor-label">
+            Select
+        </div>
+        <div class="editor-field">
+            @Html.ListBoxFor(model => model.SelectedMembers, Model.AllMembers)
         </div>
 
         <div class="editor-label">
@@ -39,7 +50,11 @@
         </div>
         <p></p>
         <p>
+<<<<<<< HEAD:Code/SQMS.Web/Views/SabaqGroup/CreateSabaqRegistration.cshtml
             <input type="submit" Name = "CreateSabaqRegistration" value="Register" />
+=======
+            <input type="submit" name="Register" value="Register" />
+>>>>>>> User listbox (partially implemented):Code/SQMS.Web/Views/SabaqGroup/Register.cshtml
         </p>
     </fieldset>
 }

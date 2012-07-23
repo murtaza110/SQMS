@@ -37,7 +37,6 @@ namespace SQMS.Web
         public DbSet<SabaqRegistration> SabaqRegistrations { get; set; }
         public DbSet<SabaqRequest> SabaqRequests { get; set; }
         public DbSet<SabaqStatus> SabaqStatus { get; set; }
-        //public DbSet<SecurityQuestion> SecurityQuestions { get; set; }
         public DbSet<User> Users { get; set; }
     }
 }

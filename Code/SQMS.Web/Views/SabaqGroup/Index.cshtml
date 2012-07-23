@@ -2,11 +2,10 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>
-    Sabaq Halqa</h2>
-    <p></p>
+<h2>Sabaq Group</h2>
+<p></p>
 <p>
-    @Html.ActionLink("Create New Halqa", "Create")
+    @Html.ActionLink("Create Sabaq Group", "Create")
 </p>
 <table width="100%">
     <col align="center" width="12%" />
@@ -21,7 +20,7 @@
     <col align="center" width="14%" />
     <tr>
         <th>
-            Halqa Name
+            Group Name
         </th>
         <th>
             Nisaab
@@ -34,7 +33,8 @@
         </th>
         @*<th>
             Creation Date
-        </th>*@ @*<th>
+        </th>*@ 
+        @*<th>
             WeekDays
         </th>*@
         <th>
@@ -59,16 +59,17 @@
                 @Html.DisplayFor(modelItem => item.Nisaab.NisaabName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.NameToShow)
+                @Html.DisplayFor(modelItem => item.User.DisplayName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Region.RegionName)
             </td>
             @*<td>
             @Html.DisplayFor(modelItem => item.CreationDate)
-        </td>*@ @*<td>
-            @Html.DisplayFor(modelItem => item.WeekDays)
-        </td>*@
+        	</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeekDays)
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>

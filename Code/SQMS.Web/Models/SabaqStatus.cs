@@ -15,7 +15,7 @@ namespace SQMS.Web.Models
         }
 
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public short SabaqStatusId { get; set; }
 
         [Column("SabaqStatus")]

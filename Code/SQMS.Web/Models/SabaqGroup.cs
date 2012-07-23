@@ -15,10 +15,10 @@ namespace SQMS.Web.Models
         }
 
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long SabaqGroupId { get; set; }
 
-        [Display(Name = "Halqa Name")]
+        [Display(Name = "Group Name")]
         [Required]
         public string GroupName { get; set; }
 
@@ -34,11 +34,14 @@ namespace SQMS.Web.Models
         public int MohallaId { get; set; }
 
         [DataType(DataType.Date)]
+		[Required]
         public System.DateTime CreationDate { get; set; }
+
         public string WeekDays { get; set; }
 
         [DataType(DataType.Date)]
         public System.DateTime StartDate { get; set; }
+
         public Nullable<byte> Duration { get; set; }
 
         [Required]
@@ -50,14 +53,13 @@ namespace SQMS.Web.Models
         [ForeignKey("MohallaId")]
         public virtual Region Region { get; set; }
 
-
-        public virtual ICollection<SabaqBook> SabaqBooks { get; set; }
-
-         [ForeignKey("MoallimId")]
+        [ForeignKey("MoallimId")]
         public virtual User User { get; set; }
 
-         [ForeignKey("SabaqStatusId")]
+        [ForeignKey("SabaqStatusId")]
         public virtual SabaqStatus SabaqStatus { get; set; }
+
+        public virtual ICollection<SabaqBook> SabaqBooks { get; set; }
 
         public virtual ICollection<SabaqRegistration> SabaqRegistrations { get; set; }
     }

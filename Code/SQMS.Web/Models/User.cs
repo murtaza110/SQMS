@@ -76,14 +76,11 @@ namespace SQMS.Web.Models
         [ForeignKey("MohallaId")]
         public virtual Region Region { get; set; }
 
-        //[ForeignKey("SecurityQuestionId")]
-        //public virtual SecurityQuestion SecurityQuestion { get; set; }
-
         public virtual ICollection<SabaqGroup> SabaqGroups { get; set; }
         public virtual ICollection<SabaqRegistration> SabaqRegistrations { get; set; }        
         public virtual ICollection<Role> Roles { get; set; }
 
-        public string NameToShow
+        public string DisplayName
         {
             get
             {
@@ -91,11 +88,11 @@ namespace SQMS.Web.Models
             }
         }
 
-        public string UserID_Name
+        public string UserID_DisplayName
         {
             get
             {
-                return UserId + " - " + NameToShow;
+                return UserId + " - " + DisplayName;
             }
         }
     }

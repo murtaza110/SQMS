@@ -10,14 +10,14 @@ using SQMS.Web;
 
 namespace SQMS.Web.Controllers
 {
-    [Authorize]
+    
     public class UserController : Controller
     {
         private SQMSDBContext db = new SQMSDBContext();
 
         //
         // GET: /User/
-
+        [Authorize]
         public ViewResult Index()
         {
             var users = db.Users.Include(u => u.Region);
@@ -38,9 +38,7 @@ namespace SQMS.Web.Controllers
 
         public ActionResult Create()
         {
-            //ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionId == 4), "RegionId", "RegionName");
-            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5).Include(u => u.Region1), "RegionId", "RegionNameShow");
-            //ViewBag.SecurityQuestionId = new SelectList(db.SecurityQuestions, "SecurityQuestionId", "SecurityQuestion1");
+            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == (int)ENRegionType.Mohalla).Include(u => u.Region1), "RegionId", "RegionNameShow");
             return View();
         }
 
@@ -55,7 +53,7 @@ namespace SQMS.Web.Controllers
                 user.IsActive = true;
 
                 string stUserID = user.UserId.ToString();
-                string stPassword = "K";
+                string stPassword = "k";
                 if (stUserID.Length >= 3)
                     stPassword += stUserID.Substring(stUserID.Length - 3, 3);
 
@@ -65,19 +63,17 @@ namespace SQMS.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5).Include(u => u.Region1), "RegionId", "RegionNameShow", user.MohallaId);
-            //ViewBag.SecurityQuestionId = new SelectList(db.SecurityQuestions, "SecurityQuestionId", "SecurityQuestion1", user.SecurityQuestionId);
+            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == (int)ENRegionType.Mohalla).Include(u => u.Region1), "RegionId", "RegionNameShow", user.MohallaId);
             return View(user);
         }
 
         //
         // GET: /User/Edit/5
-
+        [Authorize]
         public ActionResult Edit(long id)
         {
             User user = db.Users.Find(id);
-            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5).Include(u => u.Region1), "RegionId", "RegionNameShow", user.MohallaId);
-            //ViewBag.SecurityQuestionId = new SelectList(db.SecurityQuestions, "SecurityQuestionId", "SecurityQuestion1", user.SecurityQuestionId);
+            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == (int)ENRegionType.Mohalla).Include(u => u.Region1), "RegionId", "RegionNameShow", user.MohallaId);
             return View(user);
         }
 
@@ -93,14 +89,13 @@ namespace SQMS.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == 5).Include(u => u.Region1), "RegionId", "RegionNameShow", user.MohallaId);
-            //ViewBag.SecurityQuestionId = new SelectList(db.SecurityQuestions, "SecurityQuestionId", "SecurityQuestion1", user.SecurityQuestionId);
+            ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == (int)ENRegionType.Mohalla).Include(u => u.Region1), "RegionId", "RegionNameShow", user.MohallaId);
             return View(user);
         }
 
         //
         // GET: /User/Delete/5
-
+        [Authorize]
         public ActionResult Delete(long id)
         {
             User user = db.Users.Find(id);

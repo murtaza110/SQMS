@@ -15,12 +15,13 @@ namespace SQMS.Web.Models
 
         [Required]
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "Region Type Id")]
         public short RegionTypeId { get; set; }
 
         [Required]
-        [Display(Name = "Region Type")]        
+        [Display(Name = "Region Type")]
+        [Column("RegionType")]
         public string RegionTypeName { get; set; }
 
         public virtual ICollection<Region> Regions { get; set; }

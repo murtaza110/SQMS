@@ -14,7 +14,7 @@ namespace SQMS.Web.Models
         }
 
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long SabaqBookId { get; set; }
         public long SabaqGroupId { get; set; }
         public int BookId { get; set; }

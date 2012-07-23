@@ -74,9 +74,9 @@
     <Compile Include="Controllers\RegionTypeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SabaqGroupController.cs" />
-    <Compile Include="Controllers\SabaqRegistrationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DBContext.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Nisaab.cs" />
     <Compile Include="Models\Region.cs" />
@@ -99,10 +99,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SQMSDB.mdf" />
-    <Content Include="App_Data\SQMSDB_log.LDF">
-      <DependentUpon>SQMSDB.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\images\img01.gif" />
     <Content Include="Content\images\img02.gif" />
     <Content Include="Content\images\img03.gif" />
@@ -283,13 +279,13 @@
     <Content Include="Views\SabaqGroup\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\SabaqRegistration\Index.cshtml" />
+    <Content Include="Views\SabaqGroup\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\SabaqRegistration\Details.cshtml" />
+    <Content Include="Views\SabaqGroup\EditRegistration.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\SabaqGroup\CreateSabaqRegistration.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\SabaqGroup\EditSabaqRegistration.cshtml" />

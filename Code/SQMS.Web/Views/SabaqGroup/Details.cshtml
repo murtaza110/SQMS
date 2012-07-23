@@ -2,14 +2,12 @@
 @{
     ViewBag.Title = "Details";
 }
-<h2>
-    Halqa Details</h2>
-<p>
-</p>
+<h2>Group Details</h2>
+<p></p>
 <fieldset>
-    <legend>Sabaq Halqa</legend>
+    <legend>Sabaq Group</legend>
     <div class="display-label">
-        Halqa Name</div>
+        Group Name</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.GroupName)
     </div>
@@ -21,7 +19,7 @@
     <div class="display-label">
         Moallim</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.User.NameToShow)
+        @Html.DisplayFor(model => model.User.DisplayName)
     </div>
     <div class="display-label">
         Mohallah</div>
@@ -59,7 +57,7 @@
 <fieldset>
     <legend>Registered Members</legend>
     <p>
-        @Html.ActionLink("Register Member", "CreateSabaqRegistration", new { id = Model.SabaqGroupId })
+        @Html.ActionLink("Register Member", "Register", new { id = Model.SabaqGroupId })
     </p>
     <table border="1" width="100%">
         <col align="center" width="30%" />
@@ -86,14 +84,15 @@
                     @Html.DisplayFor(book => item.MemberId)
                 </td>
                 <td>
-                    @Html.DisplayFor(book => item.User.NameToShow)
+                    @Html.DisplayFor(book => item.User.DisplayName)
                 </td>
                 <td>
-                    @Html.DisplayFor(book => item.SabaqStatu.SabaqStatusName)
+                    @Html.DisplayFor(book => item.SabaqStatus.SabaqStatusName)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "EditSabaqRegistration", new { id = item.SabaqRegId }) | @* @Html.ActionLink("Details", "Details", new { id = item.BookId }) |*@
-                    @Html.ActionLink("Delete", "DeleteSabaqRegistration", new { id = item.SabaqRegId  })
+                    @Html.ActionLink("Edit", "EditRegistration", new { id = item.SabaqRegId }) | 
+                    @* @Html.ActionLink("Details", "Details", new { id = item.BookId }) |*@
+                    @Html.ActionLink("Delete", "DeleteRegistration", new { id = item.SabaqRegId  })
                 </td>
             </tr>
         }

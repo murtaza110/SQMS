@@ -14,7 +14,7 @@ namespace SQMS.Web.Models
         }
 
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public short RequestTypeId { get; set; }
 
         [Column("RequestType")]
