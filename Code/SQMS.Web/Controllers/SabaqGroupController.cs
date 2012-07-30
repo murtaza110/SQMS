@@ -175,8 +175,9 @@ namespace SQMS.Web.Controllers
             sabaqGroup.Add(db.SabaqGroups.Find(sabaqregistration.SabaqGroupId));
 
             ViewBag.SabaqGroupId = new SelectList(sabaqGroup, "SabaqGroupId", "GroupName", sabaqregistration.SabaqGroupId);
-            ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", sabaqregistration.SabaqStatusId);
-            //ViewBag.MemberId = new SelectList(db.Users, "UserId", "UserID_DisplayName", sabaqregistration.MemberId);
+            ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", (int)ENSabaqStatus.Created);
+            //ViewBag.MemberId = new SelectList(db.Users, "UserId", "UserID_DisplayName");
+
             return View(sabaqregistration);
         }
 
