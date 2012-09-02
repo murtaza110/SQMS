@@ -31,10 +31,10 @@
         </div>*@
 
         <div class="editor-label">
-            Select
+            Select Members
         </div>
         <div class="editor-field">
-            @Html.ListBoxFor(model => model.SelectedMembers, Model.AllMembers)
+            @Html.ListBoxFor(model => model.SelectedMembers, Model.AllMembers, new { style = "height:200px;" })
         </div>
 
         <div class="editor-label">

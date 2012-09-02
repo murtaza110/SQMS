@@ -90,8 +90,6 @@
                     @Html.DisplayFor(book => item.SabaqStatus.SabaqStatusName)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "EditRegistration", new { id = item.SabaqRegId }) | 
-                    @* @Html.ActionLink("Details", "Details", new { id = item.BookId }) |*@
                     @Html.ActionLink("Delete", "DeleteRegistration", new { id = item.SabaqRegId  })
                 </td>
             </tr>

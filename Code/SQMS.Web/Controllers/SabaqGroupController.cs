@@ -146,15 +146,22 @@ namespace SQMS.Web.Controllers
 
         public ActionResult Register(int id)
         {
-            List<SabaqGroup> sabaqGroup = new List<SabaqGroup>();
-            sabaqGroup.Add(db.SabaqGroups.Find(id));
+            SabaqGroup sabaqGroup = db.SabaqGroups.Find(id);
+            List<SabaqGroup> lstSabaqGroup = new List<SabaqGroup>();
+            lstSabaqGroup.Add(sabaqGroup);
 
-            ViewBag.SabaqGroupId = new SelectList(sabaqGroup, "SabaqGroupId", "GroupName", id);
+            ViewBag.SabaqGroupId = new SelectList(lstSabaqGroup, "SabaqGroupId", "GroupName", id);
             ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", (int)ENSabaqStatus.Created);
             //ViewBag.MemberId = new SelectList(db.Users, "UserId", "UserID_DisplayName");
             
+            var users = from u in db.Users
+                        where !(from u1 in db.SabaqRegistrations
+                                where u1.SabaqGroupId == sabaqGroup.SabaqGroupId
+                                select u1.MemberId).Contains(u.UserId)
+                        select u;
+            
             SabaqRegistration model = new SabaqRegistration();
-            model.AllMembers = new MultiSelectList(db.Users, "UserId", "UserID_DisplayName").AsEnumerable();
+            model.AllMembers = new MultiSelectList(users, "UserId", "UserID_DisplayName").AsEnumerable();
             return View(model);
         }
 
@@ -166,17 +173,29 @@ namespace SQMS.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.SabaqRegistrations.Add(sabaqregistration);
-                db.SaveChanges();
+                foreach (int memberId in sabaqregistration.SelectedMembers)
+                {
+                    sabaqregistration.MemberId = memberId;
+                    db.SabaqRegistrations.Add(sabaqregistration);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Details", new { id = sabaqregistration.SabaqGroupId });
             }
 
             List<SabaqGroup> sabaqGroup = new List<SabaqGroup>();
-            sabaqGroup.Add(db.SabaqGroups.Find(sabaqregistration.SabaqGroupId));
+            sabaqGroup.Add(sabaqregistration.SabaqGroup);
 
             ViewBag.SabaqGroupId = new SelectList(sabaqGroup, "SabaqGroupId", "GroupName", sabaqregistration.SabaqGroupId);
             ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", (int)ENSabaqStatus.Created);
             //ViewBag.MemberId = new SelectList(db.Users, "UserId", "UserID_DisplayName");
+
+            var users = from u in db.Users
+                        where !(from u1 in db.SabaqRegistrations
+                                where u1.SabaqGroupId == sabaqregistration.SabaqGroupId
+                                select u1.MemberId).Contains(u.UserId)
+                        select u;
+
+            sabaqregistration.AllMembers = new MultiSelectList(db.Users, "UserId", "UserID_DisplayName").AsEnumerable();
 
             return View(sabaqregistration);
         }
@@ -212,20 +231,10 @@ namespace SQMS.Web.Controllers
         //    return View(sabaqregistration);
         //}
 
-        ////
-        //// GET: /SabaqGroup/DeleteRegistration/5
+        //
+        // GET: /SabaqGroup/DeleteRegistration/5
 
         public ActionResult DeleteRegistration(long id)
-        {
-            SabaqRegistration sabaqregistration = db.SabaqRegistrations.Find(id);
-            return View(sabaqregistration);
-        }
-
-        //
-        // POST: /Sabaq/DeleteRegistration/5
-
-        [HttpPost, ActionName("DeleteRegistration")]
-        public ActionResult DeleteConfirmedSabaqRegistration(long id)
         {
             SabaqRegistration sabaqregistration = db.SabaqRegistrations.Find(id);
             db.SabaqRegistrations.Remove(sabaqregistration);
