@@ -79,6 +79,14 @@
         </div>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.Amount, "Amount")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Amount)
+            @Html.ValidationMessageFor(model => model.Amount)
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.SabaqStatusId, "SabaqStatus")
         </div>
         <div class="editor-field">

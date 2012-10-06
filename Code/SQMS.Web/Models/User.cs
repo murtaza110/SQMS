@@ -64,12 +64,10 @@ namespace SQMS.Web.Models
 
         //[Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Column(TypeName = "image")]
         public byte[] Image { get; set; }
-
 
         public bool IsActive { get; set; }
 

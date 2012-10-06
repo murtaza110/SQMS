@@ -4,6 +4,15 @@
     ViewBag.Title = "Error";
 }
 
-<h2>
-    Sorry, an error occurred while processing your request.
-</h2>
+@if ( ViewBag.ErrorMessage.Length > 0 )
+{
+    <h2> @ViewBag.ErrorMessage </h2>
+}
+else
+{
+     <h2>
+        Sorry, an error occurred while processing your request.
+    </h2>
+}
+
+

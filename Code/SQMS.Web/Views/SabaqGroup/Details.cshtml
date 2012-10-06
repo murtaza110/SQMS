@@ -2,8 +2,19 @@
 @{
     ViewBag.Title = "Details";
 }
-<h2>Group Details</h2>
-<p></p>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.printBtn').bind('click', function () {
+            var url = this.href;
+            var thePopup = window.open(url, 'CardPrint', 'height=250,width=400');
+            return false;
+        });
+    });
+</script>
+<h2>
+    Group Details</h2>
+<p>
+</p>
 <fieldset>
     <legend>Sabaq Group</legend>
     <div class="display-label">
@@ -45,6 +56,11 @@
         Duration</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Duration)
+    </div>
+     <div class="display-label">
+        Amount</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Amount)
     </div>
     <div class="display-label">
         Status</div>
@@ -90,7 +106,8 @@
                     @Html.DisplayFor(book => item.SabaqStatus.SabaqStatusName)
                 </td>
                 <td>
-                    @Html.ActionLink("Delete", "DeleteRegistration", new { id = item.SabaqRegId  })
+                    @Html.ActionLink("Print Card", "CardPrintImage", new { id = item.SabaqRegId }, new { @class = "printBtn" }) |
+                    @Html.ActionLink("Delete", "DeleteRegistration", new { id = item.SabaqRegId })
                 </td>
             </tr>
         }

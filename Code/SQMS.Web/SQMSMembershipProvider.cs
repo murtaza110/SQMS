@@ -4,6 +4,7 @@ using System.Data.Entity;
 using SQMS.Web.Models;
 using System;
 using System.Configuration.Provider;
+using System.Collections.Generic;
 
 namespace SQMS.Web
 {
@@ -216,7 +217,18 @@ namespace SQMS.Web
 
         public override string[] GetRolesForUser(string username)
         {
-            throw new NotImplementedException();
+            long userId = 0;
+            if (Int64.TryParse(username, out userId) == false)
+                return null;
+
+            User user = db.Users.Find(userId);
+            if (user == null) return null;
+
+            List<string> rolesName = new List<string>();
+            foreach (Role _roles in user.Roles)
+                rolesName.Add(_roles.RoleId.ToString());
+
+            return rolesName.ToArray();
         }
 
         public override string[] GetUsersInRole(string roleName)

@@ -9,8 +9,8 @@ namespace SQMS.Web
     {
         Admin = 1,
         SubAdmin,
-        Member,
         Moallim,
+        Member = 5,
     }
 
     public enum ENRegionType
@@ -26,13 +26,13 @@ namespace SQMS.Web
     public enum ENRequestType
     {
         SabaqGroup = 1,
-        SabaqRegistration
+        SabaqRegistration,
     }
 
     public enum ENSabaqStatus
     {
         Requested = 1,
-        Created,
+        Approved,
         Rejected,
         InProgress,
         Suspended,

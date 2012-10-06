@@ -1,12 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Web
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQMS.Web", "SQMS.Web\SQMS.Web.csproj", "{F5904C14-7A4D-419F-9036-CB6675E5B8C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQMS.Web.Tests", "SQMS.Web.Tests\SQMS.Web.Tests.csproj", "{E1A09BCE-24DB-40BC-9BDE-1B99B28ED72B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5D5600C5-466C-4EBA-92AB-B81F141D6EB1} = {5D5600C5-466C-4EBA-92AB-B81F141D6EB1}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGenerationModule", "CardGenerationModule\CardGenerationModule.csproj", "{5D5600C5-466C-4EBA-92AB-B81F141D6EB1}"
 EndProject

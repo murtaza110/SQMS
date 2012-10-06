@@ -10,7 +10,7 @@ using SQMS.Web;
 
 namespace SQMS.Web.Controllers
 {
-    [Authorize]
+    [MyAuthorizeAttribute(Roles = CommonUtility.SubAdminRole)]
     public class SabaqGroupController : Controller
     {
         private SQMSDBContext db = new SQMSDBContext();
@@ -52,7 +52,7 @@ namespace SQMS.Web.Controllers
             ViewBag.NisaabId = new SelectList(db.Nisaabs, "NisaabId", "NisaabName");
             ViewBag.MohallaId = new SelectList(db.Regions.Where(c => c.RegionTypeId == (int)ENRegionType.Mohalla).Include(d => d.Region1), "RegionId", "RegionNameShow");
             ViewBag.MoallimId = new SelectList(users, "UserId", "DisplayName");
-            ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", (int)ENSabaqStatus.Created);
+            ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", (int)ENSabaqStatus.Approved);
             return View();
         } 
 
@@ -151,7 +151,7 @@ namespace SQMS.Web.Controllers
             lstSabaqGroup.Add(sabaqGroup);
 
             ViewBag.SabaqGroupId = new SelectList(lstSabaqGroup, "SabaqGroupId", "GroupName", id);
-            ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", (int)ENSabaqStatus.Created);
+            ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", (int)ENSabaqStatus.Approved);
             //ViewBag.MemberId = new SelectList(db.Users, "UserId", "UserID_DisplayName");
             
             var users = from u in db.Users
@@ -186,7 +186,7 @@ namespace SQMS.Web.Controllers
             sabaqGroup.Add(sabaqregistration.SabaqGroup);
 
             ViewBag.SabaqGroupId = new SelectList(sabaqGroup, "SabaqGroupId", "GroupName", sabaqregistration.SabaqGroupId);
-            ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", (int)ENSabaqStatus.Created);
+            ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", (int)ENSabaqStatus.Approved);
             //ViewBag.MemberId = new SelectList(db.Users, "UserId", "UserID_DisplayName");
 
             var users = from u in db.Users
@@ -200,18 +200,30 @@ namespace SQMS.Web.Controllers
             return View(sabaqregistration);
         }
 
+        [HttpGet]
+        public PartialViewResult CardPrintImage(long id)
+        {
+            var sabaqregistration = db.SabaqRegistrations.Where(d => d.SabaqRegId == id).Include(d => d.SabaqGroup).Include(d => d.User);
+            SabaqRegistration _sabaqReg = sabaqregistration.First();
+            return PartialView(_sabaqReg);//View(_sabaqReg);
+        }
+
         //
         // GET: SabaqGroup/EditRegistration/5
 
-        //public ActionResult EditRegistration(long id)
-        //{
-        //    SabaqRegistration sabaqregistration = db.SabaqRegistrations.Find(id);
-        //    ViewBag.SabaqGroupId = new SelectList(db.SabaqGroups, "SabaqGroupId", "GroupName", sabaqregistration.SabaqGroupId);
-        //    ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", sabaqregistration.SabaqStatusId);
-        //    ViewBag.MemberId = new SelectList(db.Users, "UserId", "UserID_DisplayName", sabaqregistration.MemberId);
+        public ActionResult EditRegistration(long id)
+        {
+            var sabaqregistration = db.SabaqRegistrations.Where(d => d.SabaqRegId == id).Include(d => d.SabaqGroup).Include(d => d.User);
+            SabaqRegistration _sabaqReg = sabaqregistration.First();
+            //ViewBag.SabaqGroupId = new SelectList(db.SabaqGroups, "SabaqGroupId", "GroupName", sabaqregistration.SabaqGroupId);
+            //ViewBag.SabaqStatusId = new SelectList(db.SabaqStatus, "SabaqStatusId", "SabaqStatusName", sabaqregistration.SabaqStatusId);
+            //ViewBag.MemberId = new SelectList(db.Users, "UserId", "UserID_DisplayName", sabaqregistration.MemberId);
 
-        //    return View(sabaqregistration);
-        //}
+            //User user = db.Users.Find(sabaqregistration.MemberId);
+            //SabaqGroup sabaqGroup = db.SabaqGroups.Find(sabaqregistration.SabaqGroupId);
+            System.Drawing.Image image = CardGenerationModule.CardGenerationModule.Instance.GetCardImage(_sabaqReg.MemberId.ToString(), _sabaqReg.User.DisplayName, _sabaqReg.SabaqGroup.GroupName, _sabaqReg.SabaqGroup.WeekDays, _sabaqReg.User.Phone1); 
+            return new ImageResult(image);
+        }
 
         //
         // POST: SabaqGroup/EditRegistration/5

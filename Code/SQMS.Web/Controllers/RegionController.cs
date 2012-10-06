@@ -10,7 +10,7 @@ using SQMS.Web;
 
 namespace SQMS.Web.Controllers
 {
-    [Authorize]
+   [MyAuthorizeAttribute(Roles = CommonUtility.SubAdminRole)]
     public class RegionController : Controller
     {
         private SQMSDBContext db = new SQMSDBContext();

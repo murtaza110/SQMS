@@ -11,7 +11,7 @@ using SQMS.Web;
 namespace SQMS.Web.Controllers
 {
     [ChildActionOnly]
-    [Authorize]
+    [MyAuthorizeAttribute]
     public class BookController : Controller
     {
         private SQMSDBContext db = new SQMSDBContext();

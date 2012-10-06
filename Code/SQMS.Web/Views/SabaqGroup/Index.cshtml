@@ -33,16 +33,16 @@
         </th>
         @*<th>
             Creation Date
-        </th>*@ 
-        @*<th>
+        </th>
+        <th>
             WeekDays
         </th>*@
         <th>
             Start Date
         </th>
-        <th>
+        @*<th>
             Duration
-        </th>
+        </th>*@
         <th>
             Status
         </th>
@@ -73,9 +73,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Duration)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.SabaqStatus.SabaqStatusName)
             </td>

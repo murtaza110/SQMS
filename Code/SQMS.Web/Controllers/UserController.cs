@@ -18,6 +18,7 @@ namespace SQMS.Web.Controllers
         //
         // GET: /User/
         [Authorize]
+        [MyAuthorizeAttribute(Roles = CommonUtility.SubAdminRole)]
         public ViewResult Index()
         {
             var users = db.Users.Include(u => u.Region);
@@ -58,6 +59,7 @@ namespace SQMS.Web.Controllers
                     stPassword += stUserID.Substring(stUserID.Length - 3, 3);
 
                 user.Password = stPassword;
+                user.Roles.Add(db.Roles.Find((int)ENRole.Member));
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");

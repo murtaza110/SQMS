@@ -28,6 +28,8 @@ namespace SQMS.Web.Models
         
         public short SabaqStatusId { get; set; }
 
+        public Nullable<decimal> Amount { get; set; }
+
         public virtual ICollection<SabaqAttendance> SabaqAttendances { get; set; }
 
         [ForeignKey("SabaqGroupId")]

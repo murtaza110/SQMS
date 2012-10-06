@@ -44,6 +44,8 @@ namespace SQMS.Web.Models
 
         public Nullable<byte> Duration { get; set; }
 
+        public Nullable<decimal> Amount { get; set; }
+
         [Required]
         public short SabaqStatusId { get; set; }
 
