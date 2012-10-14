@@ -68,7 +68,8 @@ namespace CardGenerationModule
             Graphics g = Graphics.FromImage(myBitmap);
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
 
-            Rectangle DivName = new Rectangle(110, 310, 440, 50);
+            //Rectangle DivName = new Rectangle(110, 280, 440, 80);
+            Rectangle DivName = new Rectangle(110, 327, 440, 50);
             Rectangle DivPhone = new Rectangle(110, 365, 440, 50);
             Rectangle DivSabaqDay = new Rectangle(110, 470, 440, 50);
 
@@ -81,7 +82,7 @@ namespace CardGenerationModule
             if (!string.IsNullOrEmpty(memberName))
             {
                 string _memberName = memberName;
-                Font font = new Font(DisplayFontName, 32, FontStyle.Bold);
+                Font font = new Font(DisplayFontName, 27, FontStyle.Bold);
 
                 if (IsStringSizeGreater(_memberName, font, g, DivName.Size.Width))
                 {
@@ -89,9 +90,18 @@ namespace CardGenerationModule
                     int nNoOfLines = 0;
                     _memberName = GetFormattedString(_memberName, font, g, DivName.Size.Width, out nNoOfLines);
 
-                    DivName.Height = DivName.Height + (30 * nNoOfLines);
-                    DivPhone.Y = DivPhone.Y + (30 * nNoOfLines);
+                    DivName.Height = DivName.Height + (40 * nNoOfLines);
+                    if (nNoOfLines > 3) //then DivName Height will be greater and will disturb other areas in card
+                        DivName.Height = 170; //so, set the max height that we can afford not to disturb the design
+                    
+                    DivName.Y = DivName.Y - ((40 * nNoOfLines)/2);
+                    if (DivName.Y < 267) //then DivName.Y will disturb the top
+                        DivName.Y = 267; //so, set the DivName.Y to max that we can afford not to disturb the design
+                    
+                    DivPhone.Y = DivPhone.Y + (40 * nNoOfLines);
                 }
+
+                //DivName.Y = DivName.Y + GetCenterAllignedY(_memberName, font, g, DivName.Height);
 
                 g.DrawString(_memberName, font, Brushes.Black, DivName);
             }
@@ -184,6 +194,19 @@ namespace CardGenerationModule
             if ((int)fontSize.Width < nWidth)
             {
                 int nDifference = nWidth - (int)fontSize.Width;
+                nDiv = nDifference / 2;
+            }
+
+            return nDiv;
+        }
+
+        private int GetCenterAllignedY(string data, Font font, Graphics g, int nHeight)
+        {
+            int nDiv = 0;
+            SizeF fontSize = g.MeasureString(data, font);
+            if ((int)fontSize.Height < nHeight)
+            {
+                int nDifference = nHeight - (int)fontSize.Height;
                 nDiv = nDifference / 2;
             }
 
