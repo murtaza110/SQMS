@@ -79,6 +79,7 @@
         <col align="center" width="30%" />
         <col align="center" width="30%" />
         <col align="center" width="10%" />
+        <col align="center" width="10%" />
         <col align="center" width="30%" />
         <tr>
             <th align="center">
@@ -89,6 +90,9 @@
             </th>
             <th align="center">
                 Status
+            </th>
+            <th align="center">
+                Amount
             </th>
             <th>
             </th>
@@ -104,6 +108,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(book => item.SabaqStatus.SabaqStatusName)
+                </td>
+                <td>
+                    @Html.DisplayFor(book => item.Amount)
                 </td>
                 <td>
                     @Html.ActionLink("Print Card", "CardPrintImage", new { id = item.SabaqRegId }, new { @class = "printBtn" }) |
